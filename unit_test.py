@@ -1,7 +1,7 @@
 from fod_requests import fodRequest
 from fod_token import getHeader
 from amsfod import getReleaseIDLatest
-from ams_defaults import getAppMonVulns
+from ams_defaults import getAppMonConfig, updateAppMonConf
 
 headerValue = getHeader()
 
@@ -35,9 +35,13 @@ s = fodRequest()
 # #         releaseID = release['releaseId']
 
 # print(r)
+updates = {"enabled": "True", "scanUrl": "http://www.d2c.protective.com"}
 
-r = getAppMonVulns(67007, limit=1, offset=1, fields="findingId,severityId")
+data = updateAppMonConf(67007, updates)
+print(data)
+r = getAppMonConfig(67007)
 print(r)
+
 
 
 
